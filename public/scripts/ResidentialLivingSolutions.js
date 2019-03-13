@@ -11,15 +11,34 @@ function ResidentialLivingSolutions() {
 
   firebase.firestore().settings({ timestampsInSnapshots: true });
 
-  var that = this;
+  var that = this;/*
   firebase.auth().signInAnonymously().then(function() {
     that.initTemplates();
     that.initRouter();
     that.initReviewDialog();
+    that.initRequestDialog ();
     that.initFilterDialog();
   }).catch(function(err) {
     console.log(err);
-  });
+  });*/
+  var provider = new firebase.auth.GoogleAuthProvider();
+  if(!isUserSignedIn){
+    firebase.auth().signInWithPopup(provider).then(function() {
+      that.initTemplates();
+      that.initRouter();
+      that.initReviewDialog();
+      that.initRequestDialog ();
+      that.initFilterDialog();
+    }).catch(function(err) {
+      console.log(err);
+    });
+  } else {
+    that.initTemplates();
+    that.initRouter();
+    that.initReviewDialog();
+    that.initRequestDialog ();
+    that.initFilterDialog();
+  }
 }
 
 /**
@@ -220,10 +239,6 @@ ResidentialLivingSolutions.prototype.data = {
   ]
 };
 
-window.onload = function() {
-  window.app = new ResidentialLivingSolutions();
-};
-
 // Signs-in Friendly Chat.
 function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
@@ -368,4 +383,9 @@ signOutButtonElement.addEventListener('click', signOut);
 signInButtonElement.addEventListener('click', signIn);
 
 // We load currently existing chat messages and listen to new ones.
-loadMessages();
+//loadMessages();
+
+
+window.onload = function() {
+  window.app = new ResidentialLivingSolutions();
+};

@@ -163,7 +163,7 @@ ResidentialLivingSolutions.prototype.initReviewDialog = function() {
     that.addRating(id, {
       rating: rating,
       text: dialog.querySelector('#text').value,
-      userName: 'Anonymous (Web)',
+      userName: firebase.auth().currentUser.displayName,
       timestamp: new Date(),
       userId: firebase.auth().currentUser.uid
     }).then(function() {
@@ -189,6 +189,29 @@ ResidentialLivingSolutions.prototype.initReviewDialog = function() {
     };
     el.addEventListener('mouseover', rate);
   });
+};
+
+ResidentialLivingSolutions.prototype.initRequestDialog = function() {
+  var dialog = document.querySelector('#dialog-add-request');
+  this.dialogs.add_review = new mdc.dialog.MDCDialog(dialog);
+
+  var that = this;
+  this.dialogs.add_review.listen('MDCDialog:accept', function() {
+    var pathname = that.getCleanPath(document.location.pathname);
+    var id = pathname.split('/')[2];
+
+    that.addRating(id, {
+      rating: rating,
+      text: dialog.querySelector('#text').value,
+      userName: firebase.auth().currentUser.displayName,
+      timestamp: new Date(),
+      userId: firebase.auth().currentUser.uid
+    }).then(function() {
+      that.rerender();
+    });
+  });
+
+  var rating = new MDCChipSet(dialog.querySelectorAll('.mdc-chip-set'));
 };
 
 ResidentialLivingSolutions.prototype.initFilterDialog = function() {
@@ -442,7 +465,17 @@ ResidentialLivingSolutions.prototype.render = function(el, data) {
       }
       tel.style[attr] = value;
     }
+    
   };
+
+  // Shortcuts to DOM Elements.
+  var userPicElement = document.getElementById('user-pic');
+  var userNameElement = document.getElementById('user-name');
+  var signInButtonElement = document.getElementById('sign-in');
+  var signOutButtonElement = document.getElementById('sign-out');
+  var signInSnackbarElement = document.getElementById('must-signin-snackbar');
+  signOutButtonElement.addEventListener('click', signOut);
+  signInButtonElement.addEventListener('click', signIn);
 
   var preModifiers = ['data-fir-foreach'];
 
