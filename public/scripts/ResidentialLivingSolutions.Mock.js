@@ -11,7 +11,7 @@ ResidentialLivingSolutions.prototype.addMockEmployees = function() {
     var city = this.getRandomItem(this.data.cities);
     var price = Math.floor(Math.random() * 4) + 1;
     var photoID = Math.floor(Math.random() * 22) + 1;
-    var photo = '/images/' + category + '.png';
+    var photo = 'https://firebasestorage.googleapis.com/v0/b/resident-living-solutions.appspot.com/o/' + category + '.png?alt=media';
     var numRatings = 0;
     var avgRating = 0;
 
