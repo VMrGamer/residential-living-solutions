@@ -4,14 +4,14 @@ ResidentialLivingSolutions.prototype.addMockEmployees = function() {
 
   for (var i = 0; i < 20; i++) {
     var name =
-        this.getRandomItem(this.data.words) +
+        this.getRandomItem(this.data.firstNames) +
         ' ' +
-        this.getRandomItem(this.data.words);
+        this.getRandomItem(this.data.lastNames);
     var category = this.getRandomItem(this.data.categories);
     var city = this.getRandomItem(this.data.cities);
     var price = Math.floor(Math.random() * 4) + 1;
     var photoID = Math.floor(Math.random() * 22) + 1;
-    var photo = 'https://storage.googleapis.com/firestorequickstarts.appspot.com/food_' + photoID + '.png';
+    var photo = '/images/' + category + '.png';
     var numRatings = 0;
     var avgRating = 0;
 
