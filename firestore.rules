@@ -1,11 +1,11 @@
 service cloud.firestore {
   match /databases/{database}/documents {
-        // Restaurants:
+        // Employees:
         //   - Authenticated user can read
         //   - Authenticated user can create/update (for demo)
         //   - Validate updates
         //   - Deletes are not allowed
-    match /restaurants/{restaurantId} {
+    match /employees/{employeeId} {
       allow read, create: if request.auth != null;
       allow update: if request.auth != null
                     && request.resource.data.name == resource.data.name
