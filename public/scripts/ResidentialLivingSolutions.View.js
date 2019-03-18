@@ -193,10 +193,10 @@ ResidentialLivingSolutions.prototype.initReviewDialog = function() {
 
 ResidentialLivingSolutions.prototype.initRequestDialog = function() {
   var dialog = document.querySelector('#dialog-add-request');
-  this.dialogs.add_review = new mdc.dialog.MDCDialog(dialog);
+  this.dialogs.add_request = new mdc.dialog.MDCDialog(dialog);
 
   var that = this;
-  this.dialogs.add_review.listen('MDCDialog:accept', function() {
+  this.dialogs.add_request.listen('MDCDialog:accept', function() {
     var pathname = that.getCleanPath(document.location.pathname);
     var id = pathname.split('/')[2];
 
@@ -331,6 +331,16 @@ ResidentialLivingSolutions.prototype.viewEmployee = function(id) {
         dialog.root_.querySelectorAll('.star-input i').forEach(function(el) {
           el.innerText = 'star_border';
         });
+
+        dialog.show();
+      };
+
+      data.show_add_request = function() {
+        // Reset the state before showing the dialog
+        dialog.root_.querySelector('#text').value = '';
+        //dialog.root_.querySelectorAll('.star-input i').forEach(function(el) {
+        //  el.innerText = 'star_border';
+        //});
 
         dialog.show();
       };
