@@ -150,11 +150,11 @@
                     <span class="light">●</span>
                     <span data-fir-content="city"></span>
                   </div>
-                  <button id="show-add-request" data-fir-click="show_add_request" class="mdc-button fab">
-                    <i class="material-icons">person_add</i>
-                  </button>
                   <button id="show-add-review" data-fir-click="show_add_review" class="mdc-button fab">
                       <i class="material-icons">add</i>
+                  </button>
+                  <button id="show-add-request" data-fir-click="show_add_request" class="mdc-button fab">
+                    <i class="material-icons">person_add</i>
                   </button>
                 </div>
               </div>
@@ -381,7 +381,6 @@
     <div class="mdc-dialog__backdrop"></div>
   </aside>
 </div>
-
 <script src="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.js"></script>
 <script src="/__/firebase/5.7.3/firebase-app.js"></script>
 <script src="/__/firebase/5.7.3/firebase-auth.js"></script>
@@ -391,6 +390,8 @@
 <script src="/__/firebase/init.js"></script>
 
 <script src="//unpkg.com/navigo@6"></script>
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<script>mdc.autoInit()</script>
 
 <script src="/scripts/ResidentialLivingSolutions.js"></script>
 <script src="/scripts/ResidentialLivingSolutions.View.js"></script>
