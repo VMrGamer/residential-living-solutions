@@ -67,3 +67,14 @@ ResidentialLivingSolutions.prototype.addRating = function(employeeID, rating) {
     	});
   	});
 };
+
+ResidentialLivingSolutions.prototype.addRequest = function(employeeID, request) {
+	var collection = firebase.firestore().collection('employees');
+	var document = collection.doc(employeeID);
+	var newRequestDocument = document.collection('requests').doc();
+	return firebase.firestore().runTransaction(function(transaction) {
+	  return transaction.get(document).then(function(doc) {
+		return transaction.set(newRequestDocument, request);
+	  });
+	});
+};

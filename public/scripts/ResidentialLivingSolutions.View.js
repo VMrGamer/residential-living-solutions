@@ -1,5 +1,4 @@
 'use strict';
-
 ResidentialLivingSolutions.prototype.initTemplates = function() {
   this.templates = {};
 
@@ -194,14 +193,14 @@ ResidentialLivingSolutions.prototype.initReviewDialog = function() {
 ResidentialLivingSolutions.prototype.initRequestDialog = function() {
   var dialog = document.querySelector('#dialog-add-request');
   this.dialogs.add_request = new mdc.dialog.MDCDialog(dialog);
-
+  
   var that = this;
   this.dialogs.add_request.listen('MDCDialog:accept', function() {
     var pathname = that.getCleanPath(document.location.pathname);
     var id = pathname.split('/')[2];
 
-    that.addRating(id, {
-      rating: rating,
+    that.addRequest(id, {
+      request: "null",
       text: dialog.querySelector('#text').value,
       userName: firebase.auth().currentUser.displayName,
       timestamp: new Date(),
@@ -211,7 +210,7 @@ ResidentialLivingSolutions.prototype.initRequestDialog = function() {
     });
   });
 
-  var rating = new MDCChipSet(dialog.querySelectorAll('.mdc-chip-set'));
+  var request = new MDCChipSet(dialog.querySelectorAll('.mdc-chip-set').getSelectedChipIds());
 };
 
 ResidentialLivingSolutions.prototype.initFilterDialog = function() {
@@ -323,26 +322,26 @@ ResidentialLivingSolutions.prototype.viewEmployee = function(id) {
   return this.getEmployee(id)
     .then(function(doc) {
       var data = doc.data();
-      var dialog =  that.dialogs.add_review;
-
+      var dialogreq =  that.dialogs.add_request;
+      var dialogrev =  that.dialogs.add_review;
       data.show_add_review = function() {
         // Reset the state before showing the dialog
-        dialog.root_.querySelector('#text').value = '';
-        dialog.root_.querySelectorAll('.star-input i').forEach(function(el) {
+        dialogrev.root_.querySelector('#text').value = '';
+        dialogrev.root_.querySelectorAll('.star-input i').forEach(function(el) {
           el.innerText = 'star_border';
         });
 
-        dialog.show();
+        dialogrev.show();
       };
 
       data.show_add_request = function() {
         // Reset the state before showing the dialog
-        dialog.root_.querySelector('#text').value = '';
+        dialogreq.root_.querySelector('#text').value = '';
         //dialog.root_.querySelectorAll('.star-input i').forEach(function(el) {
         //  el.innerText = 'star_border';
         //});
 
-        dialog.show();
+        dialogreq.show();
       };
 
       sectionHeaderEl = that.renderTemplate('employee-header', data);

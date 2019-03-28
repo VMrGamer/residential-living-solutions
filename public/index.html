@@ -360,14 +360,14 @@
         </h2>
       </header>
       <section class="mdc-dialog__body">
-          <div class="mdc-chip-set">
-              <div class="mdc-chip" tabindex="0">
+          <div class="mdc-chip-set mdc-chip-set--choice" id = "chips" data-mdc-auto-init="MDCChipSet">
+              <div class="mdc-chip mdc-chip--selected" data-mdc-auto-init="MDCChip" tabindex="0">
                 <div class="mdc-chip__text">Hourly Basis</div>
               </div>
-              <div class="mdc-chip" tabindex="1">
+              <div class="mdc-chip" data-mdc-auto-init="MDCChip" tabindex="1">
                 <div class="mdc-chip__text">Weekly Basis</div>
               </div>
-              <div class="mdc-chip" tabindex="2">
+              <div class="mdc-chip" data-mdc-auto-init="MDCChip" tabindex="2">
                 <div class="mdc-chip__text">Monthly Basis</div>
               </div>
             </div>
@@ -381,7 +381,7 @@
     <div class="mdc-dialog__backdrop"></div>
   </aside>
 </div>
-<script src="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.js"></script>
+<script id="material" src="https://unpkg.com/material-components-web@0.39.3/dist/material-components-web.js"></script>
 <script src="/__/firebase/5.7.3/firebase-app.js"></script>
 <script src="/__/firebase/5.7.3/firebase-auth.js"></script>
 <script src="/__/firebase/5.7.3/firebase-storage.js"></script>
@@ -390,8 +390,6 @@
 <script src="/__/firebase/init.js"></script>
 
 <script src="//unpkg.com/navigo@6"></script>
-<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-<script>mdc.autoInit()</script>
 
 <script src="/scripts/ResidentialLivingSolutions.js"></script>
 <script src="/scripts/ResidentialLivingSolutions.View.js"></script>
