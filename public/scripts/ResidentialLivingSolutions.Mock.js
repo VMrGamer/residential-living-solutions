@@ -14,6 +14,7 @@ ResidentialLivingSolutions.prototype.addMockEmployees = function() {
     var photo = 'https://firebasestorage.googleapis.com/v0/b/resident-living-solutions.appspot.com/o/' + category + '.png?alt=media';
     var numRatings = 0;
     var avgRating = 0;
+    var numRequests = 0;
 
     var promise = this.addEmployee({
       name: name,
@@ -22,6 +23,7 @@ ResidentialLivingSolutions.prototype.addMockEmployees = function() {
       city: city,
       numRatings: numRatings,
       avgRating: avgRating,
+      numRequests: numRequests,
       photo: photo
     });
 

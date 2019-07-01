@@ -199,6 +199,7 @@ ResidentialLivingSolutions.prototype.initRequestDialog = function() {
     var pathname = that.getCleanPath(document.location.pathname);
     var id = pathname.split('/')[2];
 
+    //var request = new MDCChipSet(dialog.querySelectorAll('.mdc-chip-set').getSelectedChipIds());
     that.addRequest(id, {
       request: "null",
       text: dialog.querySelector('#text').value,
@@ -210,7 +211,6 @@ ResidentialLivingSolutions.prototype.initRequestDialog = function() {
     });
   });
 
-  var request = new MDCChipSet(dialog.querySelectorAll('.mdc-chip-set').getSelectedChipIds());
 };
 
 ResidentialLivingSolutions.prototype.initFilterDialog = function() {

@@ -72,9 +72,14 @@ ResidentialLivingSolutions.prototype.addRequest = function(employeeID, request) 
 	var collection = firebase.firestore().collection('employees');
 	var document = collection.doc(employeeID);
 	var newRequestDocument = document.collection('requests').doc();
+	//newRequestDocument.set(request);
 	return firebase.firestore().runTransaction(function(transaction) {
-	  return transaction.get(document).then(function(doc) {
-		return transaction.set(newRequestDocument, request);
-	  });
-	});
+    	return transaction.get(document).then(function(doc) {
+      		var data = doc.data();
+      		transaction.update(document, {
+        		numRequests: data.numRequests + 1
+      		});
+      	return transaction.set(newRequestDocument, request);
+    	});
+  	});
 };
